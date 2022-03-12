@@ -1,0 +1,18 @@
+{
+  "name": "react-task-app",
+  "version": "1.0.0",
+  "description": "task managment",
+  "main": "main.js",
+  "scripts": {
+    "test": "start",
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^17.0.1"
+  },
+  "dependencies": {
+    "electron-packager": "^15.4.0"
+  }
+}
