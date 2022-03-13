@@ -54,4 +54,7 @@ function newAttribute(el, attrs){
   }
 };
 
-
+var ipcBtn = document.getElementById('ipcTest').addEventListener("click", () =>{
+  window.myAPI.ipcTester(message)
+  console.log(message)
+})

@@ -3,10 +3,10 @@ const {  ipcRenderer: ipc } = require('electron-better-ipc')
 
 contextBridge.exposeInMainWorld('myAPI', {
   newUser: (user) => ipc.callMain('new-user', user),
+  ipcTester: async (message) => await ipc.callMain('ipc-test', message), 
 })
 
 var Counter = require('./src/modules/increaseUser.js');
-var calControl = require('./src/modules/calControl.js');
 var attr = require('./src/modules/attributeUpdate.js')
 
 window.addEventListener('DOMContentLoaded', () => {

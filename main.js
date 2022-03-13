@@ -3,7 +3,7 @@ const { ipcMain: ipc } = require('electron-better-ipc')
 const path = require('path');
 const fs = require('fs')
 
-var Counter = require('./src/modules/increaseUser.js')
+
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -42,6 +42,10 @@ app.whenReady().then(() =>{
         console.log(`${user} added to file`)
     })
 
+    ipc.answerRenderer('ipc-test', async (message) =>{
+        message = "ipc test complete" 
+        return message
+    })
     createWindow()
 
     app.on('activate', () =>{
