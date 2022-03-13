@@ -7,6 +7,7 @@ contextBridge.exposeInMainWorld('myAPI', {
 
 var Counter = require('./src/modules/increaseUser.js');
 var calControl = require('./src/modules/calControl.js');
+var attr = require('./src/modules/attributeUpdate.js')
 
 window.addEventListener('DOMContentLoaded', () => {
   fetch('users.txt').then(Response => Response.text()).then((data) => {
@@ -25,17 +26,11 @@ window.addEventListener('DOMContentLoaded', () => {
 function addUser(data){
   var btn = document.createElement('button');
   document.getElementById('userContainer').appendChild(btn)
-  setAttributes(btn, {"id": `user-${Counter.count}`, "value": data, "type": "button"} )
+  attr.newAttribute(btn, {"id": `user-${Counter.count}`, "value": data, "type": "button"})
   btn.classList.add('user')
   btn.innerText = data;
   btn.addEventListener("click", openCal)
   Counter.add();
-}
-
-function setAttributes(el, attrs) {
-  for(var key in attrs){
-    el.setAttribute(key, attrs[key])
-  }
 }
 
 function openCal(){
