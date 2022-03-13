@@ -1,37 +1,9 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
+const { ipcMain: ipc } = require('electron-better-ipc')
 const path = require('path');
-const fs= require('fs');
+const fs = require('fs')
 
-var newUser = require('./src/modules/newUserAdded.js')
-
-async function addUser(event){
-    newUser.addUserBtn();
-    
-    
-    /*var btn = document.createElement('button');
-    document.getElementById('userContainer').appendChild(btn)
-    addAttr.newAttribute(btn, {"id":`user-${Counter.count}`,"value": document.querySelector("input").value, "type": "button"})
-    btn.innerText = document.querySelector('input').value;
-    btn.classList.add('user')
-    
-    document.querySelector('#userName').value = 'Enter user';
-    btn.addEventListener("click", openCal)
-
-    fs.readFile(
-        './users.txt',
-        'utf-8',
-        (err, file) => fs.writeFile(
-          './users.txt',
-          file.split('\n').map( (line) => `${line + user},`).join('\n'),
-          (err) => {}
-        )
-    );
-    console.log(`new ${user} added`);*/
-}
-
-
-
-
+var Counter = require('./src/modules/increaseUser.js')
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -57,7 +29,19 @@ const createWindow = () => {
 
 
 app.whenReady().then(() =>{
-    ipcMain.on('new-user', addUser)
+    ipc.answerRenderer('new-user', async (user) =>{
+        fs.readFile(
+            './users.txt',
+            'utf-8',
+            (err, file) => fs.writeFile(
+              './users.txt',
+              file.split('\n').map( (line) => `${line + user},`).join('\n'),
+              (err) => {}
+            )
+        );
+        console.log(`${user} added to file`)
+    })
+
     createWindow()
 
     app.on('activate', () =>{

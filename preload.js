@@ -1,8 +1,8 @@
-const { contextBridge, ipcRenderer } = require('electron');
-
+const { contextBridge } = require('electron');
+const {  ipcRenderer: ipc } = require('electron-better-ipc')
 
 contextBridge.exposeInMainWorld('myAPI', {
-  newUser: () => ipcRenderer.send('new-user'),
+  newUser: (user) => ipc.callMain('new-user', user),
 })
 
 var Counter = require('./src/modules/increaseUser.js');
@@ -28,7 +28,7 @@ function addUser(data){
   setAttributes(btn, {"id": `user-${Counter.count}`, "value": data, "type": "button"} )
   btn.classList.add('user')
   btn.innerText = data;
-  //eventsUpdate.newEvent(`user-${Counter.count}`,"click",openCal)
+  btn.addEventListener("click", openCal)
   Counter.add();
 }
 
