@@ -42,8 +42,12 @@ app.whenReady().then(() =>{
         console.log(`${user} added to file`)
     })
 
-    ipc.answerRenderer('ipc-test', async (message) =>{
-        message = "ipc test complete" 
+    ipc.answerRenderer('ipc-test', async (num) =>{
+        if (num === '1'){
+            var message = '1 was sent to main'
+        }else if (num === '2'){
+            var message = '2 was sent to main'
+        }
         return message
     })
     createWindow()

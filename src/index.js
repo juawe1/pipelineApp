@@ -33,7 +33,7 @@ function addUser(){
   btn.innerText = document.querySelector('input').value;
   btn.classList.add('user')
   btn.addEventListener("click", openCal)
-  window.myAPI.newUser(document.querySelector('input').value); //adding user to user.txt with api call to preload to trigger event on main.js
+  myAPI.newUser(document.querySelector('input').value); //adding user to user.txt with api call to preload to trigger event on main.js
   document.querySelector('#userName').value = 'Enter user';
   modal.style.display = "none";
 }
@@ -55,6 +55,13 @@ function newAttribute(el, attrs){
 };
 
 var ipcBtn = document.getElementById('ipcTest').addEventListener("click", () =>{
-  window.myAPI.ipcTester(message)
-  console.log(message)
+  myAPI.ipcTester('1').then(function(result){
+    console.log(result)
+  })
+})
+
+var ipcBtn2 = document.getElementById('ipcTest2').addEventListener("click", () =>{
+  myAPI.ipcTester('2').then(function(result){
+    console.log(result)
+  })
 })
