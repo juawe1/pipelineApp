@@ -4,7 +4,6 @@ const path = require('path');
 const fs = require('fs')
 
 
-
 const createWindow = () => {
     const win = new BrowserWindow({
         height: 900,
@@ -58,6 +57,7 @@ app.whenReady().then(() =>{
 })
 
 app.on('window-all-closed', () =>{
+    mongoose.connection.close()
     if (process.platform !== 'darwin') app.quit()
 })
 

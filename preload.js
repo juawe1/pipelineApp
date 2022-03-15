@@ -1,6 +1,13 @@
 
 const { contextBridge } = require('electron');
 const {  ipcRenderer: ipc } = require('electron-better-ipc')
+const mongoose = require('mongoose')
+const url = require('./src/config.env')
+const connectionPramas = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}
+const userSchema = require('./src/schemas/user-schema.js')
 
 contextBridge.exposeInMainWorld('myAPI', {
   newUser: (user) => ipc.callMain('new-user', user),
@@ -9,7 +16,7 @@ contextBridge.exposeInMainWorld('myAPI', {
 
 var Counter = require('./src/modules/increaseUser.js');
 var attr = require('./src/modules/attributeUpdate.js')
-var ConnectToDb = require('./src/modules/db.js')
+
 
 window.addEventListener('DOMContentLoaded', () => {
 
@@ -22,7 +29,18 @@ window.addEventListener('DOMContentLoaded', () => {
       addUser(usersArr[i])
     }
   })
-  //ConnectToDb.start()
+  mongoose.connect(url.mongoLink,connectionPramas)
+  .then( () => {
+      console.log('connected to database')
+      const user = {
+        name: 'John'
+      }
+    
+      new userSchema(user).save()
+    })
+  .catch( (err) =>{
+      console.log(`Error connecting to the database. \n${err}`)
+  })
 })
 
 
