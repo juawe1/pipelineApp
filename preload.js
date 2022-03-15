@@ -2,7 +2,7 @@
 const { contextBridge } = require('electron');
 const {  ipcRenderer: ipc } = require('electron-better-ipc')
 const mongoose = require('mongoose')
-const url = require('./src/config.env')
+const url = require('./config.json')
 const connectionPramas = {
   useNewUrlParser: true,
   useUnifiedTopology: true

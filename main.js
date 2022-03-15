@@ -2,7 +2,7 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const { ipcMain: ipc } = require('electron-better-ipc')
 const path = require('path');
 const fs = require('fs')
-
+const mongoose = require('mongoose')
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -58,6 +58,7 @@ app.whenReady().then(() =>{
 
 app.on('window-all-closed', () =>{
     mongoose.connection.close()
+    console.log('connection terminated')
     if (process.platform !== 'darwin') app.quit()
 })
 

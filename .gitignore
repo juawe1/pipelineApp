@@ -1,5 +1,6 @@
 node_modules
 
 #api keys
-config.env
+config.json
+
 
