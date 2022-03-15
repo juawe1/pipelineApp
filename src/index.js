@@ -7,12 +7,10 @@ var addBtn = document.getElementById("NewUser");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
-var counter = 0
+
 // When the user clicks on the button, open the modal
 addBtn.onclick = function() {
   modal.style.display = "block";
-  counter = document.getElementsByClassName('user').length
-  console.log(counter)
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -27,9 +25,10 @@ function addUser(){
   var btn = document.createElement('button');
   document.getElementById('userContainer').appendChild(btn)
   //setting new button attributes
-  counter += 1
-  console.log(counter)
-  newAttribute(btn, {"id":`user-${counter}`,"value": document.querySelector("input").value, "type": "button"})
+
+  newAttribute(btn, {"id":`user-${Counter.getNum()}`,"value": document.querySelector("input").value, "type": "button"})
+  Counter.add()
+  
   btn.innerText = document.querySelector('input').value;
   btn.classList.add('user')
   btn.addEventListener("click", openCal)
@@ -61,7 +60,6 @@ var ipcBtn = document.getElementById('ipcTest').addEventListener("click", () =>{
 })
 
 var ipcBtn2 = document.getElementById('ipcTest2').addEventListener("click", () =>{
-  myAPI.ipcTester('2').then(function(result){
-    console.log(result)
-  })
+  console.log(Counter.getNum())
+  Counter.add()
 })

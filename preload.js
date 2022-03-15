@@ -1,3 +1,4 @@
+
 const { contextBridge } = require('electron');
 const {  ipcRenderer: ipc } = require('electron-better-ipc')
 
@@ -8,8 +9,10 @@ contextBridge.exposeInMainWorld('myAPI', {
 
 var Counter = require('./src/modules/increaseUser.js');
 var attr = require('./src/modules/attributeUpdate.js')
+var ConnectToDb = require('./src/modules/db.js')
 
 window.addEventListener('DOMContentLoaded', () => {
+
   fetch('users.txt').then(Response => Response.text()).then((data) => {
     let users = data
     console.log(users)
@@ -19,7 +22,7 @@ window.addEventListener('DOMContentLoaded', () => {
       addUser(usersArr[i])
     }
   })
-  
+  //ConnectToDb.start()
 })
 
 
