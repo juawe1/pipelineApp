@@ -2,7 +2,8 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const { ipcMain: ipc } = require('electron-better-ipc')
 const path = require('path');
 const fs = require('fs')
-const mongoose = require('mongoose')
+const db = require('./db.js')
+
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -39,6 +40,8 @@ app.whenReady().then(() =>{
             )
         );
         console.log(`${user} added to file`)
+        db.newUserData(user)
+
     })
 
     ipc.answerRenderer('ipc-test', async (num) =>{
@@ -50,15 +53,14 @@ app.whenReady().then(() =>{
         return message
     })
     createWindow()
-
+    db.connect()
     app.on('activate', () =>{
         if (BrowserWindow.getAllWindows().length === 0) createWindow()
     })
 })
 
 app.on('window-all-closed', () =>{
-    mongoose.connection.close()
-    console.log('connection terminated')
+    db.disconnect()
     if (process.platform !== 'darwin') app.quit()
 })
 

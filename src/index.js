@@ -32,7 +32,9 @@ function addUser(){
   btn.innerText = document.querySelector('input').value;
   btn.classList.add('user')
   btn.addEventListener("click", openCal)
+
   myAPI.newUser(document.querySelector('input').value); //adding user to user.txt with api call to preload to trigger event on main.js
+  
   document.querySelector('#userName').value = 'Enter user';
   modal.style.display = "none";
 }
@@ -60,6 +62,5 @@ var ipcBtn = document.getElementById('ipcTest').addEventListener("click", () =>{
 })
 
 var ipcBtn2 = document.getElementById('ipcTest2').addEventListener("click", () =>{
-  console.log(Counter.getNum())
-  Counter.add()
+  
 })
