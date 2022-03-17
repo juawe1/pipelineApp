@@ -1,9 +1,5 @@
-
 const { contextBridge } = require('electron');
 const {  ipcRenderer: ipc } = require('electron-better-ipc')
-
-
-
 
 contextBridge.exposeInMainWorld('myAPI', {
   newUser: (user) => ipc.callMain('new-user', user),
@@ -15,7 +11,6 @@ var attr = require('./src/modules/attributeUpdate.js')
 
 
 window.addEventListener('DOMContentLoaded', () => {
-
   fetch('users.txt').then(Response => Response.text()).then((data) => {
     let users = data
     console.log(users)
@@ -25,7 +20,7 @@ window.addEventListener('DOMContentLoaded', () => {
       addUser(usersArr[i])
     }
   })
-  
+
 })
 
 
@@ -42,4 +37,6 @@ function addUser(data){
 function openCal(){
   document.getElementById('calBody').style.display = "block"
 }
+
+
 

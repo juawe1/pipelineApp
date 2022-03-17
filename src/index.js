@@ -55,12 +55,13 @@ function newAttribute(el, attrs){
   }
 };
 
-var ipcBtn = document.getElementById('ipcTest').addEventListener("click", () =>{
-  myAPI.ipcTester('1').then(function(result){
-    console.log(result)
-  })
+var pEls = document.getElementsByClassName('calP')
+Array.from(pEls).forEach(function(pEls) {
+  pEls.onclick = function(){
+    var parent = pEls.parentElement.id
+    console.log(`Date: ${parent} ${pEls.innerHTML}`)
+  }
 })
 
-var ipcBtn2 = document.getElementById('ipcTest2').addEventListener("click", () =>{
-  
-})
+
+
