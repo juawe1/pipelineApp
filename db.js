@@ -30,11 +30,7 @@ var db = module.exports = {
         new userSchema(user).save()
         console.log(`${userData} saved to mongoDB`)
     },
-    newTask: (dateOf, titleOf) =>{
-        const task = {
-            date: dateOf,
-            title: titleOf
-        }
+    newTask: (task) =>{
         new taskSchema(task).save()
         console.log(`${task} saved to mongoDB`)
     }

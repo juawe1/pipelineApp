@@ -217,7 +217,7 @@ h1 {
     width: 72%;
     height: 90%;
     background-color: rgb(255, 255, 255);
-    display: block;
+    display: none;
     border-radius: 10px;
 }
 

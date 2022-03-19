@@ -75,15 +75,19 @@ Array.from(pEls).forEach(function(pEls) {
 })
 
 document.getElementById('submitTask').onclick = function(){
-    let user = document.getElementById('currentUser').innerHTML
-    let date = document.getElementById('dateRegion').innerHTML
-    let title = document.getElementById('taskTitle').value
-    let client = document.getElementById('forClient').checked
-    let category = document.getElementById('category').value
-    let notes = document.getElementById('notes').value
     
-    console.log(user, date, title, client, category, notes)
     
-    myAPI.addTask(date, title)
+    const task = {
+      user: document.getElementById('currentUser').innerHTML,
+      date: document.getElementById('dateRegion').innerHTML,
+      title: document.getElementById('taskTitle').value,
+      client: document.getElementById('forClient').checked,
+      category: document.getElementById('category').value,
+      notes: document.getElementById('notes').value
+    }
+
+    console.log(task)
+    
+    myAPI.addTask(task)
 }
 
