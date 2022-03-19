@@ -46,8 +46,6 @@ app.whenReady().then(() =>{
     })
 
     ipc.answerRenderer('add-task', async (date, title) =>{
-
-    }
     })
     db.connect()
     createWindow()
