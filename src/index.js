@@ -49,7 +49,7 @@ closeCal.onclick =()=>{
 
 function openCal(){
   document.getElementById('currentUser').innerHTML = this.innerHTML
-  document.getElementById('calBody').style.display = "block"
+  calendar.style.display = "block"
 }
 
 function newAttribute(el, attrs){
@@ -68,9 +68,9 @@ Array.from(pEls).forEach(function(pEls) {
     calendar.style.display = "none"
     var parent = pEls.parentElement.id
     console.log(`Date: ${parent} ${pEls.innerHTML}`)
-    EntryDate.innerText = `${parent} ${pEls.innerHTML}`
-    document.getElementById('userWho').innerText = `Task will be added to user: ${document.getElementById('currentUser').innerHTML}`
-    entryArea.style.display = "block"
+
+    document.getElementById('currentDay').innerText = `${parent} ${pEls.innerHTML}`
+    document.getElementById('taskView').style.display = "block"
   }
 })
 
@@ -89,5 +89,8 @@ document.getElementById('submitTask').onclick = function(){
     console.log(task)
     
     myAPI.addTask(task)
+    entryArea.style.display = "none"
+    calendar.style.display = "block"
 }
+
 

@@ -112,7 +112,7 @@ h1 {
 }
 
 .modal-content{
-    background-color: #fefefe;
+    background-color: whitesmoke;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
@@ -184,16 +184,17 @@ h1 {
 }
 
 .calendarBox p{
-    width: 10px;
+    width: 17px;
     margin: 2px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 7.5px;
+    margin-right: 7.5px;
     float: left;
     cursor: pointer;
+    text-align: center;
 }
 
 .calendarBox p:hover{
-    text-decoration: underline;
+    background-color: rgba(95, 95, 95, 0.5);
 }
 
 .calClose {
@@ -216,7 +217,7 @@ h1 {
     margin: 25px 61px 0px 61px;
     width: 72%;
     height: 90%;
-    background-color: rgb(255, 255, 255);
+    background-color: whitesmoke;
     display: none;
     border-radius: 10px;
 }
@@ -293,4 +294,43 @@ h1 {
 
 #userWho{
     width: 300px;
+}
+
+/* task view */
+
+#taskView{
+    width: 100%;
+    max-width: 980px;
+    height: 100%;
+    position: relative;
+    display: block;
+    margin: 0;
+    background-color: black; /* will be whitesmoke */
+}
+
+#taskHeader{
+    width: 100%;
+    height: 60px;
+    background-color: rgb(141, 211, 101);
+    border-bottom: 2px solid rgba(0,0,0,0.9);
+    border-right: 2px solid rgba(0,0,0,0.9);
+    margin: 0;
+}
+
+#taskListArea {
+    width: 100%;
+    height: 100%;
+    background-color: whitesmoke;
+    margin: 0;
+    margin-left: 30px;
+}
+
+#currentDay{
+    margin: 0;
+    padding-top: 10px;
+    padding-left: 30px;
+}
+
+#userWho{
+    margin: 0;
 }
