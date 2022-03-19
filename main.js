@@ -2,7 +2,8 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const { ipcMain: ipc } = require('electron-better-ipc')
 const path = require('path');
 const fs = require('fs')
-const db = require('./db.js')
+const db = require('./db.js');
+const { default: mongoose } = require('mongoose');
 
 
 const createWindow = () => {
@@ -44,16 +45,12 @@ app.whenReady().then(() =>{
 
     })
 
-    ipc.answerRenderer('ipc-test', async (num) =>{
-        if (num === '1'){
-            var message = '1 was sent to main'
-        }else if (num === '2'){
-            var message = '2 was sent to main'
-        }
-        return message
+    ipc.answerRenderer('add-task', async (date, title) =>{
+
+    }
     })
-    createWindow()
     db.connect()
+    createWindow()
     app.on('activate', () =>{
         if (BrowserWindow.getAllWindows().length === 0) createWindow()
     })

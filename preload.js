@@ -3,7 +3,7 @@ const {  ipcRenderer: ipc } = require('electron-better-ipc')
 
 contextBridge.exposeInMainWorld('myAPI', {
   newUser: (user) => ipc.callMain('new-user', user),
-  ipcTester: (num) => ipc.callMain('ipc-test', num), 
+  addTask: (date, title) => ipc.callMain('add-task', date, title), 
 })
 
 var Counter = require('./src/modules/increaseUser.js');
@@ -34,7 +34,10 @@ function addUser(data){
   Counter.add();
 }
 
+var currentUser = ''
+
 function openCal(){
+  document.getElementById('currentUser').innerHTML = this.innerHTML
   document.getElementById('calBody').style.display = "block"
 }
 

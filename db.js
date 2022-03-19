@@ -2,6 +2,7 @@
 const mongoose = require('mongoose')
 const url = require('./config.json')
 const userSchema = require('./src/schemas/user-schema.js')
+const taskSchema = require('./src/schemas/task-schema.js')
 
 const connectionPramas = {
     useNewUrlParser: true,
@@ -28,5 +29,13 @@ var db = module.exports = {
         }
         new userSchema(user).save()
         console.log(`${userData} saved to mongoDB`)
+    },
+    newTask: (dateOf, titleOf) =>{
+        const task = {
+            date: dateOf,
+            title: titleOf
+        }
+        new taskSchema(task).save()
+        console.log(`${task} saved to mongoDB`)
     }
 }

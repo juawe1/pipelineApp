@@ -1,4 +1,4 @@
-
+var currentUser = ''
 // Get the modal
 var modal = document.getElementById("userInputModal");
 
@@ -29,23 +29,26 @@ function addUser(){
   newAttribute(btn, {"id":`user-${Counter.getNum()}`,"value": document.querySelector("input").value, "type": "button"})
   Counter.add()
   
-  btn.innerText = document.querySelector('input').value;
+  btn.innerText = document.getElementById('userName').value;
+  
   btn.classList.add('user')
   btn.addEventListener("click", openCal)
 
-  myAPI.newUser(document.querySelector('input').value); //adding user to user.txt with api call to preload to trigger event on main.js
+  myAPI.newUser(document.getElementById('userName').value); //adding user to user.txt with api call to preload to trigger event on main.js
   
-  document.querySelector('#userName').value = 'Enter user';
+  document.getElementById('userName').value = 'Enter user';
   modal.style.display = "none";
 }
  
 var closeCal = document.getElementsByClassName("calClose")[0];
+var calendar = document.getElementById('calBody')
 
 closeCal.onclick =()=>{
-  document.getElementById('calBody').style.display = "none"
+  calendar.style.display = "none"
 } 
 
 function openCal(){
+  document.getElementById('currentUser').innerHTML = this.innerHTML
   document.getElementById('calBody').style.display = "block"
 }
 
@@ -55,13 +58,32 @@ function newAttribute(el, attrs){
   }
 };
 
+var entryArea = document.getElementById('entryBox')
+var EntryDate = document.getElementById('dateRegion')
+
+
 var pEls = document.getElementsByClassName('calP')
 Array.from(pEls).forEach(function(pEls) {
   pEls.onclick = function(){
+    calendar.style.display = "none"
     var parent = pEls.parentElement.id
     console.log(`Date: ${parent} ${pEls.innerHTML}`)
+    EntryDate.innerText = `${parent} ${pEls.innerHTML}`
+    document.getElementById('userWho').innerText = `Task will be added to user: ${document.getElementById('currentUser').innerHTML}`
+    entryArea.style.display = "block"
   }
 })
 
-
+document.getElementById('submitTask').onclick = function(){
+    let user = document.getElementById('currentUser').innerHTML
+    let date = document.getElementById('dateRegion').innerHTML
+    let title = document.getElementById('taskTitle').value
+    let client = document.getElementById('forClient').checked
+    let category = document.getElementById('category').value
+    let notes = document.getElementById('notes').value
+    
+    console.log(user, date, title, client, category, notes)
+    
+    myAPI.addTask(date, title)
+}
 

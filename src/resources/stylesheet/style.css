@@ -1,13 +1,9 @@
 /* over all css */
 
-#ipcTest {
-    background-color: aqua;
+*{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 15px;
 }
-
-#ipcTest2 {
-    background-color: aqua;
-}
-
 
 body{
     margin: 0;
@@ -20,6 +16,7 @@ body{
 
 h1 {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 30px;
 }
 
 /* header css */
@@ -153,6 +150,13 @@ h1 {
     display: inline-block;
 }
 
+#currentUser{
+    margin: 0;
+    margin-top: 5px;
+    margin-left: 20px;
+    text-decoration: underline;
+}
+
 /* calendar box */
 
 #calBody {
@@ -204,4 +208,89 @@ h1 {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+/* user input for tasks box */
+
+#entryBox{
+    margin: 25px 61px 0px 61px;
+    width: 72%;
+    height: 90%;
+    background-color: rgb(255, 255, 255);
+    display: block;
+    border-radius: 10px;
+}
+
+#dateRegion{
+    margin: 0;
+    padding-top: 10px;
+    margin-left: 30px;
+}
+
+#taskDetails{
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+#taskTitle{
+    margin-left: 30px;
+    width: 400px;
+}
+
+#forClient{
+    margin-left: 35px;
+}
+
+#forClientP{
+    width: fit-content;
+    margin: 0;
+    margin-left: 5px;
+}
+
+#category{
+    margin-left: 35px;
+}
+
+#taskNotes{
+    margin-top: 30px;
+    margin-left: 30px;
+    width: fit-content;
+    height: fit-content;
+}
+
+#notes{
+    padding: 0;
+    border: 2px solid rgba(95, 95, 95, 0.9);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 15px;
+}
+
+/* task input footer */
+
+#taskFooter{
+    margin-left: 30px;
+    display: flex;
+    width: 561px;
+    height: fit-content;
+}
+
+#submitTask{
+    margin: auto;
+    margin-right: 0;
+    height: 25px;
+    width: 120px;
+    padding: 0;
+    border-radius: 5px;
+    border: 2px solid rgba(95, 95, 95, 0.9);
+    background-color: rgb(141, 211, 101);
+    box-shadow: 1px 2px rgba(0,0,0,0.9);
+}
+
+#submitTask:hover{
+    box-shadow: -1px -2px rgba(0,0,0,0.3);
+}
+
+#userWho{
+    width: 300px;
 }
