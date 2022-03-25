@@ -1,0 +1,336 @@
+/* over all css */
+
+*{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 15px;
+}
+
+body{
+    margin: 0;
+    display: inline-block;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+}
+
+h1 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 30px;
+}
+
+/* header css */
+
+#header{
+    width: 100vw;
+    height: 75px;
+    background-color: darkgray;
+    border-bottom: 2px solid rgba(95, 95, 95, 0.5);
+}
+
+/* side bar css */
+
+#sideBar{
+    height: 100vh;
+    width: 205px;
+    position: absolute;
+    background-color: darkgrey;
+    display: block;
+    border-right: 2px solid rgba(95, 95, 95, 0.5);
+    overflow-y: scroll;
+}
+
+#NewUser{
+    font-size: 18px;
+    background-color: whitesmoke;
+    width: 180px;
+    height: 25px;
+    border-radius: 10px;
+    margin-top: 5px;
+    border: 0px;
+    box-shadow: none;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+#NewUser:hover{
+    box-shadow: 3px 3px rgba(0,0,0,0.3);
+}
+
+#userContainer{
+    max-height: 100%;
+    margin-top: 3px;
+}
+
+#sideBar::-webkit-scrollbar {
+    width: 5px;
+    background-color: darkgray;
+    
+}
+
+#sideBar::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+#sideBar::-webkit-scrollbar-thumb {
+    background-color: darkgray;
+    outline: 1px solid slategray;
+}
+
+.user{
+    
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(141, 211, 101);
+    width: 180px;
+    height: 25px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 2px;
+    margin-bottom: 2px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+/* user input modal */
+
+.modal{
+    position: absolute;
+    display: none;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 330px;
+    left: 200px;
+    height: fit-content;
+    overflow: auto;
+    max-width: 500px;
+}
+
+.modal-content{
+    background-color: whitesmoke;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: max-content; /* Could be more or less, depending on screen size */
+    box-shadow: 5px 5px rgba(0,0,0,0.3);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#modalEnter{
+    width: 100px;
+    height: 25px;
+}
+
+/* main body css */
+
+#mainBody {
+    width: 100vw;
+    height: 761px;
+    background-color: rgb(141, 211, 101);
+    position: absolute;
+    left: 207px;
+    display: inline-block;
+}
+
+#currentUser{
+    margin: 0;
+    margin-top: 5px;
+    margin-left: 20px;
+    text-decoration: underline;
+}
+
+/* calendar box */
+
+#calBody {
+    width: 790px;
+    height: 100%;
+    display: none;
+}
+
+.calendarBox {
+    width: 220px;
+    height: 150px;
+    background-color: whitesmoke;
+    margin: 10px;
+    float: left;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+    box-shadow: 5px 5px rgba(0,0,0,0.3);
+}
+
+.monthName {
+    margin: 0;
+    padding-left: 5px;
+    font-size: larger;
+}
+
+.calendarBox p{
+    width: 17px;
+    margin: 2px;
+    margin-left: 7.5px;
+    margin-right: 7.5px;
+    float: left;
+    cursor: pointer;
+    text-align: center;
+}
+
+.calendarBox p:hover{
+    background-color: rgba(95, 95, 95, 0.5);
+}
+
+.calClose {
+    color: whitesmoke;
+    position: absolute;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.calClose:hover,
+.calClose:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* user input for tasks box */
+
+#entryBox{
+    margin: 25px 61px 0px 61px;
+    width: 72%;
+    height: 90%;
+    background-color: whitesmoke;
+    display: none;
+    border-radius: 10px;
+}
+
+#dateRegion{
+    margin: 0;
+    padding-top: 10px;
+    margin-left: 30px;
+}
+
+#taskDetails{
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+#taskTitle{
+    margin-left: 30px;
+    width: 400px;
+}
+
+#forClient{
+    margin-left: 35px;
+}
+
+#forClientP{
+    width: fit-content;
+    margin: 0;
+    margin-left: 5px;
+}
+
+#category{
+    margin-left: 35px;
+}
+
+#taskNotes{
+    margin-top: 30px;
+    margin-left: 30px;
+    width: fit-content;
+    height: fit-content;
+}
+
+#notes{
+    padding: 0;
+    border: 2px solid rgba(95, 95, 95, 0.9);
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 15px;
+}
+
+/* task input footer */
+
+#taskFooter{
+    margin-left: 30px;
+    display: flex;
+    width: 561px;
+    height: fit-content;
+}
+
+#submitTask{
+    margin: auto;
+    margin-right: 0;
+    height: 25px;
+    width: 120px;
+    padding: 0;
+    border-radius: 5px;
+    border: 2px solid rgba(95, 95, 95, 0.9);
+    background-color: rgb(141, 211, 101);
+    box-shadow: 1px 2px rgba(0,0,0,0.9);
+}
+
+#submitTask:hover{
+    box-shadow: -1px -2px rgba(0,0,0,0.3);
+}
+
+#userWho{
+    width: 300px;
+}
+
+/* task view */
+
+#taskView{
+    width: 100%;
+    max-width: 980px;
+    height: 100%;
+    position: relative;
+    display: none;
+    margin: 0;
+    background-color: black; /* will be whitesmoke */
+}
+
+#taskHeader{
+    width: 100%;
+    height: 60px;
+    background-color: rgb(141, 211, 101);
+    border-bottom: 2px solid rgba(0,0,0,0.9);
+    border-right: 2px solid rgba(0,0,0,0.9);
+    margin: 0;
+}
+
+#taskListArea {
+    width: 100%;
+    height: 100%;
+    background-color: whitesmoke;
+    margin: 0;
+    margin-left: 30px;
+}
+
+#currentDay{
+    margin: 0;
+    padding-top: 10px;
+    padding-left: 30px;
+}
+
+#userWho{
+    margin: 0;
+}
