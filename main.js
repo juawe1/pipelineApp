@@ -2,8 +2,9 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const { ipcMain: ipc } = require('electron-better-ipc')
 const path = require('path');
 const fs = require('fs')
-const db = require('./db.js');
-const { default: mongoose } = require('mongoose');
+const { dbAPI } = require('./db.js');
+
+var userAPI = new dbAPI("Cluster0", "pipeLine-app", "users")
 
 
 const createWindow = () => {
@@ -41,14 +42,15 @@ app.whenReady().then(() =>{
             )
         );
         console.log(`${user} added to file`)
-        db.newUserData(user)
+        
+        userAPI.insertFor([{ name: user }]).then((response) => {console.log(response)})
 
     })
 
     ipc.answerRenderer('add-task', async (task) =>{
-        db.newTask(task)
+        
     })
-    db.connect()
+
     createWindow()
     app.on('activate', () =>{
         if (BrowserWindow.getAllWindows().length === 0) createWindow()
@@ -56,7 +58,7 @@ app.whenReady().then(() =>{
 })
 
 app.on('window-all-closed', () =>{
-    db.disconnect()
+    
     if (process.platform !== 'darwin') app.quit()
 })
 

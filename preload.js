@@ -1,5 +1,6 @@
 const { contextBridge } = require('electron');
 const {  ipcRenderer: ipc } = require('electron-better-ipc')
+const database = require('./db.js')
 
 contextBridge.exposeInMainWorld('myAPI', {
   newUser: (user) => ipc.callMain('new-user', user),

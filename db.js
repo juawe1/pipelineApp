@@ -1,37 +1,86 @@
+const axios = require('axios');
+const config = require('./config.json')
+            
+class dbAPI {
+    constructor(cluster, database, collection, base_url = 'https://data.mongodb-api.com/app/data-tinll/endpoint/data/beta', method = 'POST', headers = {
+        'Content-Type': 'application/json',
+        'Access-Control-Request-Headers': '*',
+        'api-key': config.MongoAPI
+    }) {
+        this.cluster = cluster;
+        this.database = database;
+        this.collection = collection;
+        this.base_url = base_url;
+        this.method = method;
+        this.headers = headers;
+    }
 
-const mongoose = require('mongoose')
-const url = require('./config.json')
-const userSchema = require('./src/schemas/user-schema.js')
-const taskSchema = require('./src/schemas/task-schema.js')
+    sendRequest(data, endpoint) {
+        var header_data = JSON.stringify(Object.assign({
+            dataSource: this.cluster,
+            database: this.database,
+            collection: this.collection
+        }, data))
 
-const connectionPramas = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+        return axios({
+                method: this.method,
+                url: (this.base_url + endpoint),
+                headers: this.headers,
+                data: header_data
+
+            }).then(function(response) {
+                return response.data
+            })
+            .catch(function(error) {
+                return error;
+            });
+    };
+
+    readFor(filter, projection = {}, sort = {}, limit = 1000, skip = 0) {
+        return this.sendRequest({
+            filter: filter,
+            projection: projection,
+            sort: sort,
+            limit: limit,
+            skip: skip
+        }, "/action/find")
+    }
+
+    insertFor(documents) {
+        return this.sendRequest({
+            documents: documents
+        }, "/action/insertMany")
+    }
+
+    replaceFor(filter, replacement, upsert = false) {
+        return this.sendRequest({
+            filter: filter,
+            replacement: replacement,
+            upsert: upsert
+        }, "/action/replaceOne")
+    }
+
+    updateFor(filter, update, upsert = false) {
+        return this.sendRequest({
+            filter: filter,
+            update: update,
+            upsert: upsert
+        }, "/action/updateMany")
+    }
+
+    deleteFor(filter) {
+        return this.sendRequest({
+            filter: filter
+        }, "/action/deleteMany")
+    }
+
+    aggregateFor(pipeline) {
+        return this.sendRequest({
+            pipeline: pipeline
+        }, "/action/aggregate")
+    }
 }
 
-
-
-var db = module.exports = {
-    connect: () => {
-        mongoose.connect(url.mongoLink,connectionPramas).then( () => {
-            console.log('connected to database')
-        }).catch( (err) =>{
-              console.log(`Error connecting to the database. \n${err}`)
-            })
-    },
-    disconnect: () => {
-        mongoose.connection.close()
-        console.log('connection terminated')
-    },
-    newUserData: (userData) =>{
-        const user = {
-            name: userData
-        }
-        new userSchema(user).save()
-        console.log(`${userData} saved to mongoDB`)
-    },
-    newTask: (task) =>{
-        new taskSchema(task).save()
-        console.log(`${task} saved to mongoDB`)
-    }
+module.exports = {
+    dbAPI
 }

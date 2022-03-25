@@ -68,11 +68,16 @@ Array.from(pEls).forEach(function(pEls) {
     calendar.style.display = "none"
     var parent = pEls.parentElement.id
     console.log(`Date: ${parent} ${pEls.innerHTML}`)
+    
+    myAPI.readTask()
+    
 
     document.getElementById('currentDay').innerText = `${parent} ${pEls.innerHTML}`
     document.getElementById('taskView').style.display = "block"
   }
 })
+
+
 
 document.getElementById('submitTask').onclick = function(){
     
