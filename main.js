@@ -3,9 +3,11 @@ const { ipcMain: ipc } = require('electron-better-ipc')
 const path = require('path');
 const fs = require('fs')
 const { dbAPI } = require('./db.js');
+const taskSchema = require('./src/schemas/task-schema.js')
+
 
 var userAPI = new dbAPI("Cluster0", "pipeLine-app", "users")
-
+var taskAPI = new dbAPI("Cluster0", "pipeLine-app", "tasks")
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -48,7 +50,15 @@ app.whenReady().then(() =>{
     })
 
     ipc.answerRenderer('add-task', async (task) =>{
-        
+        taskAPI.insertFor([task]).then((response) => {console.log(response)})
+    })
+
+    ipc.answerRenderer('read-users', async () =>{
+        userAPI.readFor().then((response)=>{console.log(response)})
+    })
+
+    ipc.answerRenderer('read-tasks', async (date, user) =>{
+        taskAPI.readFor({user: user, date: date}).then((response) =>{console.log(response)})
     })
 
     createWindow()

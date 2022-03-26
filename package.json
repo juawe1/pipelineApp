@@ -10,11 +10,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^17.0.1"
+    "electron": "^17.2.0"
   },
   "dependencies": {
     "axios": "^0.26.1",
     "electron-better-ipc": "^2.0.1",
-    "electron-packager": "^15.4.0"
+    "electron-packager": "^15.4.0",
+    "mongoose": "^6.2.8"
   }
 }

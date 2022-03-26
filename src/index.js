@@ -1,4 +1,5 @@
 var currentUser = ''
+var currentDate = ''
 // Get the modal
 var modal = document.getElementById("userInputModal");
 
@@ -49,6 +50,7 @@ closeCal.onclick =()=>{
 
 function openCal(){
   document.getElementById('currentUser').innerHTML = this.innerHTML
+  currentUser = document.getElementById('currentUser').innerHTML
   calendar.style.display = "block"
 }
 
@@ -69,8 +71,9 @@ Array.from(pEls).forEach(function(pEls) {
     var parent = pEls.parentElement.id
     console.log(`Date: ${parent} ${pEls.innerHTML}`)
     
-    myAPI.readTask()
-    
+    let date = `${parent} ${pEls.innerHTML}`
+    myAPI.readTasks(date, currentUser)
+    currentDate = date
 
     document.getElementById('currentDay').innerText = `${parent} ${pEls.innerHTML}`
     document.getElementById('taskView').style.display = "block"
@@ -80,22 +83,24 @@ Array.from(pEls).forEach(function(pEls) {
 
 
 document.getElementById('submitTask').onclick = function(){
-    
-    
-    const task = {
-      user: document.getElementById('currentUser').innerHTML,
-      date: document.getElementById('dateRegion').innerHTML,
-      title: document.getElementById('taskTitle').value,
-      client: document.getElementById('forClient').checked,
-      category: document.getElementById('category').value,
-      notes: document.getElementById('notes').value
-    }
-
-    console.log(task)
-    
-    myAPI.addTask(task)
-    entryArea.style.display = "none"
-    calendar.style.display = "block"
+  
+  const task = {
+    user: document.getElementById('currentUser').innerHTML, 
+    date: document.getElementById('dateRegion').innerHTML, 
+    title: document.getElementById('taskTitle').value, 
+    client: document.getElementById('forClient').checked, 
+    category: document.getElementById('category').value, 
+    notes: document.getElementById('notes').value
+  }
+  
+  myAPI.addTask(task)
+  entryArea.style.display = "none"
+  calendar.style.display = "block"
 }
 
-
+document.getElementById('newEntry').onclick = function(){
+  document.getElementById('taskView').style.display = "none"
+  document.getElementById('dateRegion').innerHTML = currentDate
+  entryArea.style.display = "block"
+  
+}

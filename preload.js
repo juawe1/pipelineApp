@@ -5,6 +5,8 @@ const database = require('./db.js')
 contextBridge.exposeInMainWorld('myAPI', {
   newUser: (user) => ipc.callMain('new-user', user),
   addTask: (task) => ipc.callMain('add-task', task), 
+  readUser: () => ipc.callMain('read-users'),
+  readTasks: (date, user) => ipc.callMain('read-tasks', date, user),
 })
 
 var Counter = require('./src/modules/increaseUser.js');
